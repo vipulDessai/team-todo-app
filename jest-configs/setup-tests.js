@@ -1,3 +1,12 @@
+// @ts-ignore
+global.IS_REACT_ACT_ENVIRONMENT = true;
+// @ts-ignore
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+// @ts-ignore
+self.IS_REACT_ACT_ENVIRONMENT = true;
+// @ts-ignore
+window.IS_REACT_ACT_ENVIRONMENT = true;
+
 // Read all the environment variables
 import { config } from 'dotenv';
 config();

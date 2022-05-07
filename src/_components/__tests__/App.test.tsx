@@ -1,26 +1,33 @@
 import React from 'react';
 
-import { render } from 'react-dom';
-import { screen } from '@testing-library/react';
-import { unmountComponentAtNode } from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { screen, waitFor } from '@testing-library/react';
+
 import App from '@/_components/App';
+import { act } from 'react-dom/test-utils';
 
 let container: null | HTMLDivElement = null;
+
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
 });
+
 afterEach(() => {
-  if (container) {
-    unmountComponentAtNode(container as Element);
-    container.remove();
-    container = null;
-  }
+  document.body.removeChild(container);
+  container = null;
 });
+
 describe('App component', () => {
   test('basic app loading', async () => {
-    render(<App />, container);
+    act(() => {
+      createRoot(container).render(<App />);
+    });
 
-    expect(screen.getByText(/app/i)).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText(/all todos/i)).toBeTruthy();
+
+      return true;
+    });
   });
 });
