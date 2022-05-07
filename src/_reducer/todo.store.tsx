@@ -10,7 +10,7 @@ interface TodoStoreProviderType {
   children: React.ReactNode;
   reducerData: [
     TodoReducerInitialStateType,
-    React.Dispatch<{ type: keyof typeof todoActions }>,
+    React.Dispatch<{ type: todoActions }>,
   ];
 }
 

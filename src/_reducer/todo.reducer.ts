@@ -17,20 +17,22 @@ export const todoReducerInitialState: TodoReducerInitialStateType = {
   allTodos: {},
 };
 
-export const todoActions = {
-  SET_TODO: 'SET_TODO',
-  DELETE_TODO: 'DELETE_TODO',
-};
+export enum todoActions {
+  'SET_TODO',
+  'DELETE_TODO',
+}
+
+interface todoReducerActionType {
+  type: todoActions;
+  todos?: {
+    [key: string]: singleTodoInfoType;
+  };
+  todoId?: string;
+}
 
 export function todoReducer(
   state: TodoReducerInitialStateType,
-  action: {
-    type: string;
-    todos?: {
-      [key: string]: singleTodoInfoType;
-    };
-    todoId?: string;
-  },
+  action: todoReducerActionType,
 ) {
   switch (action.type) {
     case todoActions.SET_TODO: {
