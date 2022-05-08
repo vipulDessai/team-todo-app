@@ -14,13 +14,42 @@ const todosSchema = new mongoose.Schema({
   dueDate: Number,
   createdBy: String,
   assignedTo: String,
+  completed: Boolean,
 });
 const Todos = mongoose.model('todos', todosSchema);
+
+const usersSchema = new mongoose.Schema({
+  name: String,
+});
+const Users = mongoose.model('users', usersSchema);
 
 const requestUrlPrefix = process.env.NODE_ENV === 'development' ? '/proxy' : '';
 
 module.exports = {
   initRequestHandler: (webAppModule) => {
+    webAppModule.post(`${requestUrlPrefix}/users`, async (req, res) => {
+      try {
+        await begin();
+        const newUser = await Users(req.body);
+        const userCreatedData = await newUser.save();
+        res.send({ documentCreated: true, userCreatedData });
+      } catch (error) {
+        res.send(error);
+      } finally {
+        await end();
+      }
+    });
+    webAppModule.get(`${requestUrlPrefix}/users`, async (req, res) => {
+      try {
+        await begin();
+        const usersDocuments = await Users.find();
+        res.send({ users: usersDocuments });
+      } catch (error) {
+        res.send(error);
+      } finally {
+        await end();
+      }
+    });
     webAppModule.post(`${requestUrlPrefix}/todos`, async (req, res) => {
       try {
         await begin();
@@ -38,6 +67,31 @@ module.exports = {
         await begin();
         const todosDocuments = await Todos.find();
         res.send({ todos: todosDocuments });
+      } catch (error) {
+        res.send(error);
+      } finally {
+        await end();
+      }
+    });
+    webAppModule.delete(`${requestUrlPrefix}/todos`, async (req, res) => {
+      try {
+        await begin();
+        const todosDocument = await Todos.deleteOne(req.body);
+        res.send({ documentDeleted: true, todoDeletedData: todosDocument });
+      } catch (error) {
+        res.send(error);
+      } finally {
+        await end();
+      }
+    });
+    webAppModule.put(`${requestUrlPrefix}/todos`, async (req, res) => {
+      try {
+        await begin();
+        const todosDocument = await Todos.updateOne(
+          { _id: req.body._id },
+          req.body.updatedData,
+        );
+        res.send({ documentUpdated: true, todoDeletedData: todosDocument });
       } catch (error) {
         res.send(error);
       } finally {

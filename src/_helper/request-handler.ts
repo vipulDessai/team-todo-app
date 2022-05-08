@@ -1,9 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
-import { singleTodoInfoType } from '@/_reducer';
+import { singleTodoInfoType, singleUserInfoType } from '@/_reducer';
 
 export const requestUrls = {
   TODOS: '/todos',
+  USERS: '/users',
 };
 
 export enum requestType {
@@ -17,15 +18,21 @@ const requestUrlPrefix = process.env.NODE_ENV === 'development' ? '/proxy' : '';
 
 export interface TodoAppResponseType {
   todos?: singleTodoInfoType[];
+  users?: singleUserInfoType[];
+  documentDeleted?: boolean;
+  documentUpdated?: boolean;
 }
 
 export const requestHandler = async (
   url: string,
   type: requestType,
-  requestPayload?: Object,
+  requestPayload?: any,
 ): Promise<{
   statusCode: number;
-  error: Object;
+  error: {
+    message: string;
+    details?: any;
+  };
   data: TodoAppResponseType | null;
 }> => {
   try {
@@ -39,14 +46,19 @@ export const requestHandler = async (
     } else {
       return {
         statusCode: 500,
-        error: '',
+        error: {
+          message: 'Something went wrong',
+        },
         data: null,
       };
     }
   } catch (error) {
     return {
       statusCode: error.status || 500,
-      error,
+      error: {
+        message: error.message || 'Something went wrong',
+        details: error,
+      },
       data: null,
     };
   }

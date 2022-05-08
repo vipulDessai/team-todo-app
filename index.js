@@ -25,7 +25,5 @@ app.get('*', function (req, res) {
   res.sendFile(path.resolve(path.join(__dirname, 'build', 'index.html')));
 });
 
-const requestUrlPrefix = process.env.NODE_ENV === 'development';
-
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
