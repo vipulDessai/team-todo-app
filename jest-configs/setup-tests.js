@@ -1,11 +1,11 @@
 // @ts-ignore
-global.IS_REACT_ACT_ENVIRONMENT = true;
+global.IS_REACT_ACT_ENVIRONMENT = process.env.NODE_ENV === 'test' ? true : false;
 // @ts-ignore
-globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+globalThis.IS_REACT_ACT_ENVIRONMENT = process.env.NODE_ENV === 'test' ? true : false;
 // @ts-ignore
-self.IS_REACT_ACT_ENVIRONMENT = true;
+self.IS_REACT_ACT_ENVIRONMENT = process.env.NODE_ENV === 'test' ? true : false;
 // @ts-ignore
-window.IS_REACT_ACT_ENVIRONMENT = true;
+window.IS_REACT_ACT_ENVIRONMENT = process.env.NODE_ENV === 'test' ? true : false;
 
 // Read all the environment variables
 import { config } from 'dotenv';
