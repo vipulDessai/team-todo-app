@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import App from '@/_components/App';
 import { act } from 'react-dom/test-utils';
@@ -20,9 +20,13 @@ afterEach(() => {
 
 describe('App component', () => {
   test('basic app loading', async () => {
-    act(() => {
+    if (process.env.NODE_ENV === 'test') {
+      act(() => {
+        createRoot(container).render(<App />);
+      });
+    } else {
       createRoot(container).render(<App />);
-    });
+    }
 
     await waitFor(() => {
       expect(screen.getByText(/all todos/i)).toBeTruthy();
