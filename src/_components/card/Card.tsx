@@ -21,7 +21,7 @@ export const MonsterCard = ({ title, filterCriteria }: CardType) => {
       <ul>
         {allTodosPerCard.map((singleTodo) => (
           <TodoRow
-            key={singleTodo.id}
+            key={singleTodo._id}
             todoInfo={singleTodo}
             userIconRequired={true}
           />
@@ -44,7 +44,7 @@ export const BabyCard = ({ title }: CardType) => {
       <ul>
         {allTodosPerCard.map((singleTodo) => (
           <TodoRow
-            key={singleTodo.id}
+            key={singleTodo._id}
             todoInfo={singleTodo}
             userIconRequired={true}
           />

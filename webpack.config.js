@@ -55,7 +55,7 @@ const configs = {
         historyApiFallback: true,
         hot: true,
         proxy: {
-            ['/assets' ]: 'http://localhost:8080'
+            ['/proxy']: `http://localhost:${process.env.PORT || 8080}`
         }
     },
     output: {

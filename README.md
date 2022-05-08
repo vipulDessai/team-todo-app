@@ -1,8 +1,5 @@
 # Team Todo App
 
-## Mongo atlas credentials
-root-user / MqNiM17MKXIdIemO
-
 ## NPM Packages
 ```
 // update base node modules

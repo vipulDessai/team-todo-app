@@ -1,5 +1,5 @@
 export interface singleTodoInfoType {
-  id: string;
+  _id: string;
   title: string;
   priority: number;
   dueDate: number;
@@ -7,19 +7,24 @@ export interface singleTodoInfoType {
   assignedTo: string;
 }
 
+export interface AllTodoType {
+  [key: string]: singleTodoInfoType;
+}
+
 export interface TodoReducerInitialStateType {
-  allTodos: {
-    [key: string]: singleTodoInfoType;
-  };
+  allTodos: AllTodoType;
+  globalError: string;
 }
 
 export const todoReducerInitialState: TodoReducerInitialStateType = {
   allTodos: {},
+  globalError: '',
 };
 
 export enum todoActions {
   'SET_TODO',
   'DELETE_TODO',
+  'SET_GLOBAL_ERROR',
 }
 
 interface todoReducerActionType {
@@ -28,6 +33,7 @@ interface todoReducerActionType {
     [key: string]: singleTodoInfoType;
   };
   todoId?: string;
+  errorMessage?: string;
 }
 
 export function todoReducer(
@@ -44,6 +50,12 @@ export function todoReducer(
     case todoActions.DELETE_TODO: {
       const stateReplica = { ...state };
       delete stateReplica.allTodos[action.todoId];
+      return stateReplica;
+    }
+
+    case todoActions.SET_GLOBAL_ERROR: {
+      const stateReplica = { ...state };
+      stateReplica.globalError = action.errorMessage;
       return stateReplica;
     }
 
