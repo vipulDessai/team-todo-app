@@ -58,7 +58,7 @@ export const EditOrAddTodo = () => {
       case TodoEditOrAddOperationType.UPDATE:
         {
           requestPayload = {
-            _id: componentLevelTodoInfo._id,
+            _id: todoInfo._id,
             updatedData: { ...componentLevelTodoInfo },
           };
           delete requestPayload.updatedData.__v;
@@ -93,6 +93,7 @@ export const EditOrAddTodo = () => {
 
       case TodoEditOrAddOperationType.DELETE:
         {
+          requestPayload = { _id: todoInfo._id };
           url = requestUrls.TODOS;
           requestTypeString = requestType.DELETE;
         }
