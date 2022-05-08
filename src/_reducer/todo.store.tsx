@@ -1,10 +1,18 @@
 import React from 'react';
-import { todoActions, TodoReducerInitialStateType } from './todo.reducer';
+import {
+  todoActions,
+  TodoReducerInitialStateType,
+  todoReducerActionType,
+} from './todo.reducer';
 
 const Store = React.createContext([]);
 Store.displayName = 'todo-app-store';
 
-export const todoStore = () => React.useContext(Store);
+export const todoStore = () =>
+  React.useContext(Store) as [
+    TodoReducerInitialStateType,
+    React.Dispatch<todoReducerActionType>,
+  ];
 
 interface TodoStoreProviderType {
   children: React.ReactNode;

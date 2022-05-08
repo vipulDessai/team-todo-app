@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import '@/_components/App.scss';
 
@@ -8,14 +9,15 @@ import {
   todoReducer,
   todoActions,
 } from '@/_reducer';
-import { BabyCard, MonsterCard } from './card';
 import {
   requestHandler,
   requestType,
   requestUrls,
   commonMethods,
 } from '@/_helper';
-import { EditTodo } from './card/EditTodo';
+import { EditOrAddTodo } from './edit-or-add-todo/EditOrAddTodo';
+import { Dashboard } from './dashboard/Dashboard';
+import { ExpandCard } from './expand-card/ExpandCard';
 
 export default function App() {
   const [todoReducerState, dispatch] = useReducer(
@@ -86,11 +88,13 @@ export default function App() {
 
   return (
     <TodoStoreProvider reducerData={[todoReducerState, dispatch]}>
-      <MonsterCard title="All todos" filterCriteria=""></MonsterCard>
-      <BabyCard title="Assigned to me" filterCriteria=""></BabyCard>
-      <BabyCard title="Created by me" filterCriteria=""></BabyCard>
-      <BabyCard title="Reminders" filterCriteria=""></BabyCard>
-      {todoReducerState.editTodoId && <EditTodo />}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/expand-card" element={<ExpandCard />} />
+        </Routes>
+      </Router>
+      {todoReducerState.actionSidePanel.show && <EditOrAddTodo />}
     </TodoStoreProvider>
   );
 }

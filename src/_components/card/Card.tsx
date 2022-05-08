@@ -1,37 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { singleTodoInfoType, todoStore } from '@/_reducer';
 import { TodoRow } from '.';
 
-export interface CardType {
+interface CardType {
+  children: React.ReactNode;
   title: string;
-  filterCriteria: string;
 }
 
-export const MonsterCard = ({ title, filterCriteria }: CardType) => {
-  const [todoReducerState, dispatch] = todoStore();
-
-  const allTodosPerCard: singleTodoInfoType[] = Object.values(
-    todoReducerState.allTodos,
-  );
-
+export const Card = ({ children, title }: CardType) => {
   return (
     <section>
-      <h3>{title}</h3>
-      <ul>
-        {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={true}
-          />
-        ))}
-      </ul>
+      <header>
+        <h3>{title}</h3>
+      </header>
+      <ul>{children}</ul>
+      <footer>
+        <Link to={'expand-card'}>View all</Link>
+      </footer>
     </section>
   );
 };
 
-export const BabyCard = ({ title }: CardType) => {
+export const AllTodosCard = () => {
   const [todoReducerState, dispatch] = todoStore();
 
   const allTodosPerCard: singleTodoInfoType[] = Object.values(
@@ -39,17 +31,94 @@ export const BabyCard = ({ title }: CardType) => {
   );
 
   return (
-    <section>
-      <h3>{title}</h3>
-      <ul>
-        {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={true}
-          />
-        ))}
-      </ul>
-    </section>
+    <Card title="All todos">
+      {allTodosPerCard.map((singleTodo) => (
+        <TodoRow
+          key={singleTodo._id}
+          todoInfo={singleTodo}
+          userIconRequired={true}
+        />
+      ))}
+    </Card>
+  );
+};
+
+export const AssignedToYou = () => {
+  const [todoReducerState, dispatch] = todoStore();
+
+  const allTodosPerCard: singleTodoInfoType[] = Object.values(
+    todoReducerState.allTodos,
+  );
+
+  return (
+    <Card title="Assigned to you">
+      {allTodosPerCard.map((singleTodo) => (
+        <TodoRow
+          key={singleTodo._id}
+          todoInfo={singleTodo}
+          userIconRequired={false}
+        />
+      ))}
+    </Card>
+  );
+};
+
+export const CreatedByYou = () => {
+  const [todoReducerState, dispatch] = todoStore();
+
+  const allTodosPerCard: singleTodoInfoType[] = Object.values(
+    todoReducerState.allTodos,
+  );
+
+  return (
+    <Card title="Created by you">
+      {allTodosPerCard.map((singleTodo) => (
+        <TodoRow
+          key={singleTodo._id}
+          todoInfo={singleTodo}
+          userIconRequired={false}
+        />
+      ))}
+    </Card>
+  );
+};
+
+export const Reminders = () => {
+  const [todoReducerState, dispatch] = todoStore();
+
+  const allTodosPerCard: singleTodoInfoType[] = Object.values(
+    todoReducerState.allTodos,
+  );
+
+  return (
+    <Card title="Reminders">
+      {allTodosPerCard.map((singleTodo) => (
+        <TodoRow
+          key={singleTodo._id}
+          todoInfo={singleTodo}
+          userIconRequired={false}
+        />
+      ))}
+    </Card>
+  );
+};
+
+export const Routine = () => {
+  const [todoReducerState, dispatch] = todoStore();
+
+  const allTodosPerCard: singleTodoInfoType[] = Object.values(
+    todoReducerState.allTodos,
+  );
+
+  return (
+    <Card title="Routine">
+      {allTodosPerCard.map((singleTodo) => (
+        <TodoRow
+          key={singleTodo._id}
+          todoInfo={singleTodo}
+          userIconRequired={false}
+        />
+      ))}
+    </Card>
   );
 };

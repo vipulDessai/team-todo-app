@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { singleTodoInfoType, todoActions, todoStore } from '@/_reducer';
+import {
+  actionSidePanelOperationType,
+  singleTodoInfoType,
+  todoActions,
+  todoStore,
+} from '@/_reducer';
 
 interface TodoRowType {
   userIconRequired: boolean;
@@ -11,7 +16,11 @@ export const TodoRow = ({ userIconRequired, todoInfo }: TodoRowType) => {
   const [todoReducerState, dispatch] = todoStore();
 
   const openEditTodoSidePanel = (e: React.MouseEvent<HTMLElement>) => {
-    dispatch({ type: todoActions.SET_EDIT_TODO_ID, todoId: todoInfo._id });
+    dispatch({
+      type: todoActions.SET_EDIT_TODO_ID,
+      todoId: todoInfo._id,
+      sidePanel: { show: true, type: actionSidePanelOperationType.EDIT },
+    });
   };
 
   return (

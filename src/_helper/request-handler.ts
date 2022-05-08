@@ -19,8 +19,7 @@ const requestUrlPrefix = process.env.NODE_ENV === 'development' ? '/proxy' : '';
 export interface TodoAppResponseType {
   todos?: singleTodoInfoType[];
   users?: singleUserInfoType[];
-  documentDeleted?: boolean;
-  documentUpdated?: boolean;
+  operationCompleted?: boolean;
 }
 
 export const requestHandler = async (

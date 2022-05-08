@@ -32,7 +32,7 @@ module.exports = {
         await begin();
         const newUser = await Users(req.body);
         const userCreatedData = await newUser.save();
-        res.send({ documentCreated: true, userCreatedData });
+        res.send({ operationCompleted: true, userCreatedData });
       } catch (error) {
         res.send(error);
       } finally {
@@ -55,7 +55,7 @@ module.exports = {
         await begin();
         const newTodo = new Todos(req.body);
         const todoCreatedData = await newTodo.save();
-        res.send({ documentCreated: true, todoCreatedData });
+        res.send({ operationCompleted: true, todoCreatedData });
       } catch (error) {
         res.send(error);
       } finally {
@@ -77,7 +77,7 @@ module.exports = {
       try {
         await begin();
         const todosDocument = await Todos.deleteOne(req.body);
-        res.send({ documentDeleted: true, todoDeletedData: todosDocument });
+        res.send({ operationCompleted: true, todoDeletedData: todosDocument });
       } catch (error) {
         res.send(error);
       } finally {
@@ -91,7 +91,7 @@ module.exports = {
           { _id: req.body._id },
           req.body.updatedData,
         );
-        res.send({ documentUpdated: true, todoDeletedData: todosDocument });
+        res.send({ operationCompleted: true, todoDeletedData: todosDocument });
       } catch (error) {
         res.send(error);
       } finally {
