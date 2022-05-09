@@ -1,0 +1,9 @@
+section.edit-or-add-todo-side-panel {
+  position: absolute;
+  height: calc(100% - 20px);
+  top: 0;
+  background: #fff;
+  right: 0;
+  z-index: 2;
+  padding: 10px;
+}

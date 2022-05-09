@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { singleUserInfoType, todoActions, todoStore } from '@/_reducer';
+import './Header.scss';
 
-const faPropIcon = faUser as IconProp;
+import { singleUserInfoType, todoActions, todoStore } from '@/_reducer';
 
 export const Header = () => {
   const [todoReducerState, dispatch] = todoStore();

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './EditOrAddTodo.scss';
+
 import { requestHandler, requestType, requestUrls } from '@/_helper';
 import {
   actionSidePanelOperationType,
@@ -132,10 +134,19 @@ export const EditOrAddTodo = () => {
 
   return (
     <>
-      <section>
+      <section className="edit-or-add-todo-side-panel">
         <header>
           <ul>
-            <li>Edit Todo</li>
+            {sidePanelOperation === actionSidePanelOperationType.EDIT && (
+              <li>
+                <h3>Edit Todo</h3>
+              </li>
+            )}
+            {sidePanelOperation === actionSidePanelOperationType.ADD && (
+              <li>
+                <h3>Add Todo</h3>
+              </li>
+            )}
           </ul>
         </header>
         <ul>

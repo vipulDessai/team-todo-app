@@ -5,21 +5,29 @@ import './Dashboard.scss';
 import {
   AllTodosCard,
   AssignedToYou,
+  CardCreateGroup,
   CreatedByYou,
   Reminders,
   Routine,
 } from '../card';
-import { Header } from './Header';
 
 export const Dashboard = () => {
   return (
     <section className="dashboard">
-      <Header />
-      <AllTodosCard></AllTodosCard>
-      <AssignedToYou></AssignedToYou>
-      <CreatedByYou></CreatedByYou>
-      <Reminders></Reminders>
-      <Routine></Routine>
+      <section className="dashboard-body">
+        <section className="column single">
+          <AllTodosCard></AllTodosCard>
+        </section>
+        <section className="column double">
+          <AssignedToYou></AssignedToYou>
+          <CreatedByYou></CreatedByYou>
+          <Reminders></Reminders>
+          <Routine></Routine>
+        </section>
+        <section className="column double">
+          <CardCreateGroup />
+        </section>
+      </section>
     </section>
   );
 };

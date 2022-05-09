@@ -18,6 +18,7 @@ import {
 import { EditOrAddTodo } from './edit-or-add-todo/EditOrAddTodo';
 import { Dashboard } from './dashboard/Dashboard';
 import { ExpandCard } from './expand-card/ExpandCard';
+import { Header } from './header/Header';
 
 export default function App() {
   const [todoReducerState, dispatch] = useReducer(
@@ -88,6 +89,7 @@ export default function App() {
 
   return (
     <TodoStoreProvider reducerData={[todoReducerState, dispatch]}>
+      <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard />} />

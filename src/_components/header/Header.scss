@@ -1,0 +1,41 @@
+header.header {
+  text-align: right;
+  position: relative;
+  z-index: 1;
+  section.user-select-section {
+    display: inline-block;
+    position: relative;
+    label.user-name {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .current-user-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #444444;
+      border-radius: 25px;
+      position: relative;
+      margin: 20px 30px;
+      .fa-user {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .user-select-menu {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translate(0%, 100%);
+      li {
+        white-space: nowrap;
+        padding: 5px 20px;
+        background: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+}

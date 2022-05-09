@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import './Card.scss';
 
@@ -12,16 +14,27 @@ interface CardType {
   className?: string;
 }
 
-export const Card = ({ children, title, className }: CardType) => {
+export const Card = ({ children, title, className = '' }: CardType) => {
   return (
     <section className={`card ${className}`}>
       <header>
         <h3>{title}</h3>
       </header>
-      <ul>{children}</ul>
+      <div className="card-body">{children}</div>
       <footer>
         <Link to={'expand-card'}>View all</Link>
       </footer>
+    </section>
+  );
+};
+
+export const CardCreateGroup = () => {
+  return (
+    <section className="card create-group">
+      <div className="card-add-icon">
+        <FontAwesomeIcon icon={faPlus} />
+      </div>
+      <label>Create group</label>
     </section>
   );
 };
@@ -35,13 +48,15 @@ export const AllTodosCard = () => {
 
   return (
     <Card title="All todos" className="all-todos">
-      {allTodosPerCard.map((singleTodo) => (
-        <TodoRow
-          key={singleTodo._id}
-          todoInfo={singleTodo}
-          userIconRequired={true}
-        />
-      ))}
+      <ul>
+        {allTodosPerCard.map((singleTodo) => (
+          <TodoRow
+            key={singleTodo._id}
+            todoInfo={singleTodo}
+            userIconRequired={true}
+          />
+        ))}
+      </ul>
     </Card>
   );
 };
@@ -55,13 +70,15 @@ export const AssignedToYou = () => {
 
   return (
     <Card title="Assigned to you">
-      {allTodosPerCard.map((singleTodo) => (
-        <TodoRow
-          key={singleTodo._id}
-          todoInfo={singleTodo}
-          userIconRequired={false}
-        />
-      ))}
+      <ul>
+        {allTodosPerCard.map((singleTodo) => (
+          <TodoRow
+            key={singleTodo._id}
+            todoInfo={singleTodo}
+            userIconRequired={false}
+          />
+        ))}
+      </ul>
     </Card>
   );
 };
@@ -75,13 +92,15 @@ export const CreatedByYou = () => {
 
   return (
     <Card title="Created by you">
-      {allTodosPerCard.map((singleTodo) => (
-        <TodoRow
-          key={singleTodo._id}
-          todoInfo={singleTodo}
-          userIconRequired={false}
-        />
-      ))}
+      <ul>
+        {allTodosPerCard.map((singleTodo) => (
+          <TodoRow
+            key={singleTodo._id}
+            todoInfo={singleTodo}
+            userIconRequired={false}
+          />
+        ))}
+      </ul>
     </Card>
   );
 };
@@ -95,13 +114,15 @@ export const Reminders = () => {
 
   return (
     <Card title="Reminders">
-      {allTodosPerCard.map((singleTodo) => (
-        <TodoRow
-          key={singleTodo._id}
-          todoInfo={singleTodo}
-          userIconRequired={false}
-        />
-      ))}
+      <ul>
+        {allTodosPerCard.map((singleTodo) => (
+          <TodoRow
+            key={singleTodo._id}
+            todoInfo={singleTodo}
+            userIconRequired={false}
+          />
+        ))}
+      </ul>
     </Card>
   );
 };
@@ -115,13 +136,15 @@ export const Routine = () => {
 
   return (
     <Card title="Routine">
-      {allTodosPerCard.map((singleTodo) => (
-        <TodoRow
-          key={singleTodo._id}
-          todoInfo={singleTodo}
-          userIconRequired={false}
-        />
-      ))}
+      <ul>
+        {allTodosPerCard.map((singleTodo) => (
+          <TodoRow
+            key={singleTodo._id}
+            todoInfo={singleTodo}
+            userIconRequired={false}
+          />
+        ))}
+      </ul>
     </Card>
   );
 };
