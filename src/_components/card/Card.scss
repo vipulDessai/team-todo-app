@@ -17,6 +17,11 @@ $card-margin: 10px;
   .card-body {
     margin: 10px 0;
     height: calc(100% - 64px);
+    .todo-row {
+      li {
+        display: inline-block;
+      }
+    }
   }
   footer {
     text-align: right;

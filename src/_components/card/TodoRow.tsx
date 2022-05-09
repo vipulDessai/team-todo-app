@@ -6,14 +6,20 @@ import {
   todoActions,
   todoStore,
 } from '@/_reducer';
+import { TodoPriority } from '@/_helper';
 
 interface TodoRowType {
   userIconRequired: boolean;
   todoInfo: singleTodoInfoType;
 }
 
+const priorityTodoIndexed = Object.keys(TodoPriority).filter((priorityKeys) =>
+  isNaN(parseInt(priorityKeys)),
+);
+
 export const TodoRow = ({ userIconRequired, todoInfo }: TodoRowType) => {
   const [todoReducerState, dispatch] = todoStore();
+  const { allUsers } = todoReducerState;
 
   const openEditTodoSidePanel = (e: React.MouseEvent<HTMLElement>) => {
     dispatch({
@@ -24,10 +30,10 @@ export const TodoRow = ({ userIconRequired, todoInfo }: TodoRowType) => {
   };
 
   return (
-    <ul>
+    <ul className="todo-row">
       <li>{todoInfo.title}</li>
-      <li>{todoInfo.priority}</li>
-      {userIconRequired && <li>{todoInfo.assignedTo}</li>}
+      <li>{priorityTodoIndexed[todoInfo.priority]}</li>
+      {userIconRequired && <li>{allUsers[todoInfo.assignedTo].name}</li>}
       <li>
         <button onClick={openEditTodoSidePanel}>Edit</button>
       </li>

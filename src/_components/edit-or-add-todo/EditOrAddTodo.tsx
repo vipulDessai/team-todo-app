@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 
 import './EditOrAddTodo.scss';
 
-import { requestHandler, requestType, requestUrls } from '@/_helper';
+import {
+  requestHandler,
+  requestType,
+  requestUrls,
+  TodoPriority,
+} from '@/_helper';
 import {
   actionSidePanelOperationType,
   singleTodoInfoType,
@@ -10,12 +15,6 @@ import {
   todoActions,
   todoStore,
 } from '@/_reducer';
-
-enum TodoPriority {
-  'High',
-  'Medium',
-  'Low',
-}
 
 enum TodoEditOrAddOperationType {
   'UPDATE',
@@ -179,7 +178,8 @@ export const EditOrAddTodo = () => {
                       ...componentLevelTodoInfo,
                       priority: parseInt(e.target.value),
                     }))
-                  }>
+                  }
+                  defaultValue={componentLevelTodoInfo.priority}>
                   {Object.values(TodoPriority).map((key, value) => (
                     <option key={key} value={value}>
                       {key}
