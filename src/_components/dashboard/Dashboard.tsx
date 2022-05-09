@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Dashboard.scss';
+
 import {
   AllTodosCard,
   AssignedToYou,
@@ -7,11 +9,12 @@ import {
   Reminders,
   Routine,
 } from '../card';
+import { Header } from './Header';
 
 export const Dashboard = () => {
   return (
-    <section>
-      <header>Dashboard</header>
+    <section className="dashboard">
+      <Header />
       <AllTodosCard></AllTodosCard>
       <AssignedToYou></AssignedToYou>
       <CreatedByYou></CreatedByYou>

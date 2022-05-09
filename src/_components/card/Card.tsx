@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './Card.scss';
+
 import { singleTodoInfoType, todoStore } from '@/_reducer';
 import { TodoRow } from '.';
 
 interface CardType {
   children: React.ReactNode;
   title: string;
+  className?: string;
 }
 
-export const Card = ({ children, title }: CardType) => {
+export const Card = ({ children, title, className }: CardType) => {
   return (
-    <section>
+    <section className={`card ${className}`}>
       <header>
         <h3>{title}</h3>
       </header>
@@ -31,7 +34,7 @@ export const AllTodosCard = () => {
   );
 
   return (
-    <Card title="All todos">
+    <Card title="All todos" className="all-todos">
       {allTodosPerCard.map((singleTodo) => (
         <TodoRow
           key={singleTodo._id}

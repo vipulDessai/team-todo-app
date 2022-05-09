@@ -1,5 +1,20 @@
+ul,
+li {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
 button.remove-default-styling {
   border: none;
   outline: none;
   background: none;
+}
+
+body {
+  background: #eeeeee;
 }
