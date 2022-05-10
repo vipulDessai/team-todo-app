@@ -148,10 +148,10 @@ export const EditOrAddTodo = () => {
             )}
           </ul>
         </header>
-        <ul>
+        <ul className="edit-or-add-body">
           <li>
             <ul>
-              <li>Title</li>
+              <li className="label">Title</li>
               <li>
                 <input
                   type="text"
@@ -169,7 +169,7 @@ export const EditOrAddTodo = () => {
           </li>
           <li>
             <ul>
-              <li>Priority</li>
+              <li className="label">Priority</li>
               <li>
                 <select
                   name="priority"
@@ -191,7 +191,7 @@ export const EditOrAddTodo = () => {
           </li>
           <li>
             <ul>
-              <li>Due Date</li>
+              <li className="label">Due Date</li>
               <li>
                 <input
                   type="text"
@@ -209,7 +209,7 @@ export const EditOrAddTodo = () => {
           </li>
           <li>
             <ul>
-              <li>Assigned to:</li>
+              <li className="label">Assigned to:</li>
               <li>
                 <select
                   name="assigned-to-user"
@@ -234,9 +234,10 @@ export const EditOrAddTodo = () => {
           {sidePanelOperation === actionSidePanelOperationType.EDIT && (
             <ul>
               <li>
-                <ul>
+                <ul className="task-group">
                   <li>
                     <button
+                      className="btn secondary"
                       onClick={(e) =>
                         dispatch({
                           type: todoActions.SET_EDIT_TODO_ID,
@@ -246,13 +247,13 @@ export const EditOrAddTodo = () => {
                             type: null,
                           },
                         })
-                      }
-                      className="close-button">
+                      }>
                       close
                     </button>
                   </li>
                   <li>
                     <button
+                      className="btn primary"
                       onClick={(e) =>
                         saveOrUpdateTodo(e, TodoEditOrAddOperationType.UPDATE)
                       }
@@ -263,10 +264,11 @@ export const EditOrAddTodo = () => {
                 </ul>
               </li>
               <li>
-                <ul>
-                  <li>Do you want to mark the todo as complete?</li>
+                <ul className="task-group">
+                  <li>Mark the todo as complete?</li>
                   <li>
                     <button
+                      className="btn primary"
                       onClick={(e) =>
                         saveOrUpdateTodo(
                           e,
@@ -280,10 +282,12 @@ export const EditOrAddTodo = () => {
                 </ul>
               </li>
               <li>
-                <ul>
+                <ul className="task-group last">
                   <li>Do you want to delete the todo?</li>
                   <li>
-                    <button onClick={(e) => setShowDeleteTodoPopup(true)}>
+                    <button
+                      className="btn primary"
+                      onClick={(e) => setShowDeleteTodoPopup(true)}>
                       Delete todo
                     </button>
                   </li>
@@ -292,9 +296,10 @@ export const EditOrAddTodo = () => {
             </ul>
           )}
           {sidePanelOperation === actionSidePanelOperationType.ADD && (
-            <ul>
+            <ul className="task-group last">
               <li>
                 <button
+                  className="btn primary"
                   onClick={(e) =>
                     saveOrUpdateTodo(e, TodoEditOrAddOperationType.CREATE)
                   }>
@@ -303,6 +308,7 @@ export const EditOrAddTodo = () => {
               </li>
               <li>
                 <button
+                  className="btn secondary"
                   onClick={(e) =>
                     dispatch({
                       type: todoActions.SET_EDIT_TODO_ID,
@@ -312,8 +318,7 @@ export const EditOrAddTodo = () => {
                         type: null,
                       },
                     })
-                  }
-                  className="close-button">
+                  }>
                   close
                 </button>
               </li>

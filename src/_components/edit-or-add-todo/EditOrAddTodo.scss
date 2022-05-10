@@ -9,6 +9,51 @@ section.edit-or-add-todo-side-panel {
   right: 0;
   z-index: 2;
   padding: 10px;
+  width: 300px;
+  font-size: 10px;
+  header {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  ul.edit-or-add-body {
+    > li {
+      margin-bottom: 10px;
+      li.label {
+        margin-bottom: 5px;
+      }
+    }
+    input {
+      font-size: inherit;
+      width: calc(100% - 7px);
+    }
+    select {
+      font-size: inherit;
+      width: 100%;
+    }
+  }
+  footer {
+    ul.task-group {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eeeeee;
+      padding-bottom: 10px;
+      &.last {
+        border-bottom: none;
+      }
+      li {
+        display: inline-block;
+        vertical-align: middle;
+        &:nth-child(1) {
+          width: 60%;
+        }
+        &:nth-child(2) {
+          width: 40%;
+          text-align: right;
+        }
+      }
+    }
+  }
 }
 
 section.todo-delete-confirm-popup {
