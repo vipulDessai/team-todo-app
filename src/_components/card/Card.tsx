@@ -31,10 +31,12 @@ export const Card = ({ children, title, className = '' }: CardType) => {
 export const CardCreateGroup = () => {
   return (
     <section className="card create-group">
-      <div className="card-add-icon">
-        <FontAwesomeIcon icon={faPlus} />
+      <div className="card-content-wrapper">
+        <div className="card-add-icon">
+          <FontAwesomeIcon icon={faPlus} />
+        </div>
+        <label>Create group</label>
       </div>
-      <label>Create group</label>
     </section>
   );
 };
@@ -53,7 +55,7 @@ export const AllTodosCard = () => {
           <TodoRow
             key={singleTodo._id}
             todoInfo={singleTodo}
-            userIconRequired={true}
+            extraDetailsRequired={true}
           />
         ))}
       </ul>
@@ -72,11 +74,7 @@ export const AssignedToYou = () => {
     <Card title="Assigned to you">
       <ul>
         {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={false}
-          />
+          <TodoRow key={singleTodo._id} todoInfo={singleTodo} />
         ))}
       </ul>
     </Card>
@@ -94,11 +92,7 @@ export const CreatedByYou = () => {
     <Card title="Created by you">
       <ul>
         {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={false}
-          />
+          <TodoRow key={singleTodo._id} todoInfo={singleTodo} />
         ))}
       </ul>
     </Card>
@@ -116,11 +110,7 @@ export const Reminders = () => {
     <Card title="Reminders">
       <ul>
         {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={false}
-          />
+          <TodoRow key={singleTodo._id} todoInfo={singleTodo} />
         ))}
       </ul>
     </Card>
@@ -138,11 +128,7 @@ export const Routine = () => {
     <Card title="Routine">
       <ul>
         {allTodosPerCard.map((singleTodo) => (
-          <TodoRow
-            key={singleTodo._id}
-            todoInfo={singleTodo}
-            userIconRequired={false}
-          />
+          <TodoRow key={singleTodo._id} todoInfo={singleTodo} />
         ))}
       </ul>
     </Card>

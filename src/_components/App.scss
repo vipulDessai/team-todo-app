@@ -23,3 +23,20 @@ button.remove-default-styling {
 body {
   background: #eeeeee;
 }
+
+ul[class*='tag-number-'] {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 10px;
+  line-height: 11px;
+  height: 21px;
+  &.tag-number-0 {
+    background: #fbd9e1;
+  }
+  &.tag-number-1 {
+    background: #d2ffec;
+  }
+  &.tag-number-2 {
+    background: #e3f8ff;
+  }
+}
