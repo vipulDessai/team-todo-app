@@ -46,17 +46,6 @@
         vertical-align: middle;
         &.todo-selection-group {
           margin-right: 10px;
-          .completed-status {
-            $completed-status-size: 15px;
-            width: $completed-status-size;
-            height: $completed-status-size;
-            border: 1px solid $pink-color;
-            position: relative;
-            &.completed {
-              box-shadow: inset 0 0 0 3px #fff;
-              background: $pink-color;
-            }
-          }
         }
         &.todo-details {
           width: calc(100% - 28px);

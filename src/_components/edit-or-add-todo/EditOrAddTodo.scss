@@ -1,5 +1,5 @@
 $pink-color: #de59ff;
-$grey-color: #cccccc;
+$light-grey: #cccccc;
 
 section.edit-or-add-todo-side-panel {
   position: absolute;
@@ -18,7 +18,7 @@ section.todo-delete-confirm-popup {
   transform: translate(-50%, -50%);
   background: #fff;
   padding: 20px;
-  border: 2px solid $grey-color;
+  border: 2px solid $light-grey;
   header {
     border-bottom: 1px solid #eeeeee;
     padding-bottom: 10px;
@@ -30,16 +30,7 @@ section.todo-delete-confirm-popup {
     padding-top: 10px;
     text-align: right;
     button {
-      padding: 5px 10px;
-      color: #fff;
       margin-left: 10px;
-      border-radius: 5px;
-      &.primary {
-        background: $pink-color;
-      }
-      &.secondary {
-        background: $grey-color;
-      }
     }
   }
 }

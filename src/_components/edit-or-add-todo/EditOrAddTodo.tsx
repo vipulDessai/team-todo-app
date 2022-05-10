@@ -329,12 +329,12 @@ export const EditOrAddTodo = () => {
           Are you sure you want to delete the todo, this process is irreversible
           <footer>
             <button
-              className="remove-default-styling secondary"
+              className="btn secondary"
               onClick={(e) => setShowDeleteTodoPopup(false)}>
               No
             </button>
             <button
-              className="remove-default-styling primary"
+              className="btn primary"
               onClick={(e) =>
                 saveOrUpdateTodo(e, TodoEditOrAddOperationType.DELETE)
               }>

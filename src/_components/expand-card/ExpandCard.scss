@@ -1,0 +1,63 @@
+$pink-color: #de59ff;
+$dark-grey: #444444;
+
+section.expand-card {
+  width: 80%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  header {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      width: 50%;
+      &.add-section {
+        text-align: right;
+      }
+    }
+  }
+  section.table-overflow-section {
+    height: 300px;
+    overflow: auto;
+    table.all-todos-table {
+      width: 100%;
+      thead {
+        th {
+          font-size: 10px;
+          text-align: left;
+          position: sticky;
+          z-index: 1;
+          top: 0;
+          font-weight: 100;
+          padding: 10px;
+          border-bottom: 1px solid #eeeeee;
+        }
+      }
+      tbody {
+        font-size: 10px;
+        tr {
+          td {
+            padding: 10px;
+            border-bottom: 1px solid #eeeeee;
+            &.todo-title {
+              position: relative;
+              width: 200px;
+              span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 15px 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

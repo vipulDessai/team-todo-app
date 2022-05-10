@@ -1,28 +1,37 @@
 import React from 'react';
 
+import './ExpandCard.scss';
+
 import {
   actionSidePanelOperationType,
   singleTodoInfoType,
   todoActions,
   todoStore,
 } from '@/_reducer';
+import { TodoPriority } from '@/_helper';
 
 export const ExpandCard = () => {
   const [todoReducerState, dispatch] = todoStore();
+  const { allUsers } = todoReducerState;
 
   const allTodosPerCard: singleTodoInfoType[] = Object.values(
     todoReducerState.allTodos,
   );
 
+  const priorityTodoIndexed = Object.keys(TodoPriority).filter((priorityKeys) =>
+    isNaN(parseInt(priorityKeys)),
+  );
+
   return (
-    <section>
+    <section className="expand-card">
       <header>
         <ul>
           <li>
             <h3>All todos</h3>
           </li>
-          <li>
+          <li className="add-section">
             <button
+              className="btn primary"
               onClick={(e) =>
                 dispatch({
                   type: todoActions.SET_EDIT_TODO_ID,
@@ -37,52 +46,60 @@ export const ExpandCard = () => {
           </li>
         </ul>
       </header>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Priority</th>
-            <th>Due date</th>
-            <th>Created by</th>
-            <th>Assigned to</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {allTodosPerCard.map((singleTodo) => (
-            <tr key={singleTodo._id}>
-              <td>
-                <input
-                  type="checkbox"
-                  name="todo-completed"
-                  defaultChecked={singleTodo.completed}
-                />
-              </td>
-              <td>{singleTodo.title}</td>
-              <td>{singleTodo.priority}</td>
-              <td>{singleTodo.dueDate}</td>
-              <td>{singleTodo.createdBy}</td>
-              <td>{singleTodo.assignedTo}</td>
-              <td>
-                <button
-                  onClick={(e) =>
-                    dispatch({
-                      type: todoActions.SET_EDIT_TODO_ID,
-                      todoId: singleTodo._id,
-                      sidePanel: {
-                        show: true,
-                        type: actionSidePanelOperationType.EDIT,
-                      },
-                    })
-                  }>
-                  Edit
-                </button>
-              </td>
+      <section className="table-overflow-section">
+        <table className="all-todos-table">
+          <thead>
+            <tr>
+              <th data-width="10%"></th>
+              <th data-width="20%">Title</th>
+              <th data-width="10%">Priority</th>
+              <th data-width="10%">Due date</th>
+              <th data-width="10%">Created by</th>
+              <th data-width="10%">Assigned to</th>
+              <th data-width="10%">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {allTodosPerCard.map((todoInfo) => (
+              <tr key={todoInfo._id}>
+                <td>
+                  <div
+                    className={`completed-status ${
+                      todoInfo.completed ? 'completed' : ''
+                    }`}></div>
+                </td>
+                <td className="todo-title" title={todoInfo.title}>
+                  <span>{todoInfo.title}</span>
+                </td>
+                <td>
+                  <ul className={`tag-number-${todoInfo.priority}`}>
+                    <li>{priorityTodoIndexed[todoInfo.priority]}</li>
+                  </ul>
+                </td>
+                <td>{todoInfo.dueDate}</td>
+                <td>{allUsers[todoInfo.createdBy].name}</td>
+                <td>{allUsers[todoInfo.assignedTo].name}</td>
+                <td>
+                  <button
+                    className="btn primary"
+                    onClick={(e) =>
+                      dispatch({
+                        type: todoActions.SET_EDIT_TODO_ID,
+                        todoId: todoInfo._id,
+                        sidePanel: {
+                          show: true,
+                          type: actionSidePanelOperationType.EDIT,
+                        },
+                      })
+                    }>
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </section>
   );
 };
