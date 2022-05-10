@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
 import { singleUserInfoType, todoActions, todoStore } from '@/_reducer';
+import { todoAppPaths } from '@/_components/App';
+import { useMatch } from 'react-router-dom';
 
 export const Header = () => {
+  const matchingWithUrl = useMatch(todoAppPaths.EXPAND_CARD);
+
   const [todoReducerState, dispatch] = todoStore();
   const { allUsers } = todoReducerState;
 
@@ -29,6 +34,16 @@ export const Header = () => {
 
   return (
     <header className="header">
+      <section className="navigate-section">
+        {matchingWithUrl && (
+          <Link to={todoAppPaths.HOME}>
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+            <span className="url-title">Back</span>
+          </Link>
+        )}
+      </section>
       <section
         className="user-select-section"
         onClick={(e) => setShowSelectUserMenu(true)}>

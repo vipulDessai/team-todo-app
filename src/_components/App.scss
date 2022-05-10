@@ -1,3 +1,6 @@
+$pink-color: #de59ff;
+$dark-grey: #444444;
+
 ul,
 li {
   margin: 0;
@@ -26,10 +29,11 @@ body {
 
 ul[class*='tag-number-'] {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 3px 8px;
   border-radius: 10px;
   line-height: 11px;
-  height: 21px;
+  height: 15px;
+  font-size: 10px;
   &.tag-number-0 {
     background: #fbd9e1;
   }
@@ -39,4 +43,9 @@ ul[class*='tag-number-'] {
   &.tag-number-2 {
     background: #e3f8ff;
   }
+}
+
+a {
+  text-decoration: none;
+  color: $dark-grey;
 }

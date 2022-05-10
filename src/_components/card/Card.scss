@@ -74,6 +74,9 @@
             }
             li.user-details-section {
               text-align: right;
+              .user-name {
+                font-size: 10px;
+              }
               .user-icon {
                 width: 20px;
                 height: 20px;
@@ -98,5 +101,9 @@
     padding-top: 10px;
     border-top: 1px solid #eeeeee;
     text-align: right;
+    .view-all-link {
+      font-size: 10px;
+      color: $pink-color;
+    }
   }
 }

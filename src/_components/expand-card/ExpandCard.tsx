@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   actionSidePanelOperationType,
@@ -20,12 +19,7 @@ export const ExpandCard = () => {
       <header>
         <ul>
           <li>
-            <h3>
-              <span>
-                <Link to="/">Back</Link>
-              </span>
-              <span>All todos</span>
-            </h3>
+            <h3>All todos</h3>
           </li>
           <li>
             <button

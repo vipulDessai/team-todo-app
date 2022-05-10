@@ -20,6 +20,11 @@ import { Dashboard } from './dashboard/Dashboard';
 import { ExpandCard } from './expand-card/ExpandCard';
 import { Header } from './header/Header';
 
+export const todoAppPaths = {
+  HOME: '/',
+  EXPAND_CARD: '/expand-card',
+};
+
 export default function App() {
   const [todoReducerState, dispatch] = useReducer(
     todoReducer,
@@ -89,11 +94,11 @@ export default function App() {
 
   return (
     <TodoStoreProvider reducerData={[todoReducerState, dispatch]}>
-      <Header />
       <Router>
+        <Header />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/expand-card" element={<ExpandCard />} />
+          <Route path={todoAppPaths.HOME} element={<Dashboard />} />
+          <Route path={todoAppPaths.EXPAND_CARD} element={<ExpandCard />} />
         </Routes>
       </Router>
       {todoReducerState.actionSidePanel.show && <EditOrAddTodo />}

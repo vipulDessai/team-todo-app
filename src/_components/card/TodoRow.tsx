@@ -56,7 +56,9 @@ export const TodoRow = ({ extraDetailsRequired, todoInfo }: TodoRowType) => {
                 </li>
                 <li className="user-details-section">
                   <ul>
-                    <li>{allUsers[todoInfo.assignedTo].name}</li>
+                    <li className="user-name">
+                      {allUsers[todoInfo.assignedTo].name}
+                    </li>
                     <li>
                       <div className="user-icon">
                         <FontAwesomeIcon icon={faUser} />

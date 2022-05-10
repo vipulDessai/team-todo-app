@@ -7,6 +7,7 @@ import './Card.scss';
 
 import { singleTodoInfoType, todoStore } from '@/_reducer';
 import { TodoRow } from '.';
+import { todoAppPaths } from '@/_components/App';
 
 interface CardType {
   children: React.ReactNode;
@@ -22,7 +23,9 @@ export const Card = ({ children, title, className = '' }: CardType) => {
       </header>
       <div className="card-body">{children}</div>
       <footer>
-        <Link to={'expand-card'}>View all</Link>
+        <Link className="view-all-link" to={todoAppPaths.EXPAND_CARD}>
+          View all
+        </Link>
       </footer>
     </section>
   );
