@@ -1,3 +1,6 @@
+$pink-color: #de59ff;
+$grey-color: #cccccc;
+
 section.edit-or-add-todo-side-panel {
   position: absolute;
   height: calc(100% - 20px);
@@ -6,4 +9,37 @@ section.edit-or-add-todo-side-panel {
   right: 0;
   z-index: 2;
   padding: 10px;
+}
+
+section.todo-delete-confirm-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 2px solid $grey-color;
+  header {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  footer {
+    margin-top: 10px;
+    border-top: 1px solid #eeeeee;
+    padding-top: 10px;
+    text-align: right;
+    button {
+      padding: 5px 10px;
+      color: #fff;
+      margin-left: 10px;
+      border-radius: 5px;
+      &.primary {
+        background: $pink-color;
+      }
+      &.secondary {
+        background: $grey-color;
+      }
+    }
+  }
 }

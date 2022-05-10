@@ -322,17 +322,24 @@ export const EditOrAddTodo = () => {
         </footer>
       </section>
       {showDeleteTodoPopup && (
-        <section>
-          <header>Delete Todo</header>
+        <section className="todo-delete-confirm-popup">
+          <header>
+            <h3>Delete Todo</h3>
+          </header>
           Are you sure you want to delete the todo, this process is irreversible
           <footer>
             <button
+              className="remove-default-styling secondary"
+              onClick={(e) => setShowDeleteTodoPopup(false)}>
+              No
+            </button>
+            <button
+              className="remove-default-styling primary"
               onClick={(e) =>
                 saveOrUpdateTodo(e, TodoEditOrAddOperationType.DELETE)
               }>
               Yes
             </button>
-            <button onClick={(e) => setShowDeleteTodoPopup(false)}>No</button>
           </footer>
         </section>
       )}
