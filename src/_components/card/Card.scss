@@ -9,6 +9,7 @@
   width: calc(50% - (2 * #{$card-padding}) - (2 * #{$card-padding}));
   height: calc(50% - (2 * #{$card-padding}) - (2 * #{$card-padding}));
   padding: $card-padding;
+  font-size: 10px;
   &.all-todos {
     height: calc(100% - (2 * #{$card-padding}) - (2 * #{$card-padding}));
     width: calc(100% - (2 * #{$card-padding}) - (2 * #{$card-padding}));
@@ -38,7 +39,8 @@
   }
   .card-body {
     margin: 10px 0;
-    height: calc(100% - 90px);
+    height: calc(100% - 80px);
+    overflow: auto;
     .todo-row {
       margin-bottom: 20px;
       li {
@@ -87,7 +89,7 @@
     }
   }
   footer {
-    padding-top: 10px;
+    padding-top: 15px;
     border-top: 1px solid #eeeeee;
     text-align: right;
     .view-all-link {

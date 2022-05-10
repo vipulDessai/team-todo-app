@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './EditOrAddTodo.scss';
 
 import {
+  commonMethods,
   requestHandler,
   requestType,
   requestUrls,
@@ -125,6 +126,28 @@ export const EditOrAddTodo = () => {
             type: actionSidePanelOperationType.EDIT,
           },
         });
+
+        {
+          const { error, data, statusCode } = await requestHandler(
+            requestUrls.TODOS,
+            requestType.GET,
+          );
+          if (error) {
+            dispatch({
+              type: todoActions.SET_GLOBAL_ERROR,
+              error: { message: error.message, details: error },
+            });
+          } else {
+            const structuredTodoFromArray = commonMethods.arrayToObject(
+              data.todos,
+              (todo) => todo['_id'],
+            );
+            dispatch({
+              type: todoActions.SET_TODO,
+              todos: structuredTodoFromArray,
+            });
+          }
+        }
       }
     }
 
@@ -299,15 +322,6 @@ export const EditOrAddTodo = () => {
             <ul className="task-group last">
               <li>
                 <button
-                  className="btn primary"
-                  onClick={(e) =>
-                    saveOrUpdateTodo(e, TodoEditOrAddOperationType.CREATE)
-                  }>
-                  Add
-                </button>
-              </li>
-              <li>
-                <button
                   className="btn secondary"
                   onClick={(e) =>
                     dispatch({
@@ -320,6 +334,15 @@ export const EditOrAddTodo = () => {
                     })
                   }>
                   close
+                </button>
+              </li>
+              <li>
+                <button
+                  className="btn primary"
+                  onClick={(e) =>
+                    saveOrUpdateTodo(e, TodoEditOrAddOperationType.CREATE)
+                  }>
+                  Add
                 </button>
               </li>
             </ul>

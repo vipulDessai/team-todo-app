@@ -102,6 +102,11 @@ export default function App() {
         </Routes>
       </Router>
       {todoReducerState.actionSidePanel.show && <EditOrAddTodo />}
+      {todoReducerState.showLoader && (
+        <div className="global-loader">
+          <p>loading...</p>
+        </div>
+      )}
     </TodoStoreProvider>
   );
 }

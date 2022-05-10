@@ -97,7 +97,7 @@ export function todoReducer(
 
     case todoActions.SET_TODO: {
       const stateReplica = { ...state };
-      stateReplica.allTodos = { ...stateReplica.allTodos, ...action.todos };
+      stateReplica.allTodos = { ...action.todos };
       return stateReplica;
     }
     case todoActions.DELETE_TODO: {
